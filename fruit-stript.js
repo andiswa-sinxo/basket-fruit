@@ -26,7 +26,7 @@ module.exports = (pool, FruitBasket) => {
 
         await pool.query('UPDATE fruit_basket set qauntity = qty + $2  WHERE fruit_name = $1' ,[fruit_name, qauntity])
         } catch (error) {
-            console.log(error)
+         //   console.log(error)
         }
     }
 

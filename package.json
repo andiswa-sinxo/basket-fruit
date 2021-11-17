@@ -19,5 +19,8 @@
   "homepage": "https://gist.github.com/53bd68e34ecbb9a1872737a2affb0929",
   "dependencies": {
     "pg": "^8.7.1"
+  },
+  "devDependencies": {
+    "mocha": "^9.1.3"
   }
 }
