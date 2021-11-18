@@ -14,7 +14,6 @@ module.exports = (pool, FruitBasket) => {
     async function insertFruit(fruit_name,qauntity,price){
         try {
             await pool.query('INSERT into fruit_basket (fruit_name, qauntity, price) values ($1, $2, $3)', [fruit_name,qauntity,price])
-                return 'Fruit' 
         } catch (error) {
             console.log(error)
         }

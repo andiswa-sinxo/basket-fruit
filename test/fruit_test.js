@@ -18,6 +18,8 @@ describe('The fruit basket function', function () {
         let basket = FruitBasket(pool);
 
         await basket.insertFruit('Apple', 2, 4)
+        await basket.insertFruit('Banana', 1, 3)
+        await basket.insertFruit('Mango', 1, 9)
 
         assert.deepEqual([
             {
@@ -26,15 +28,37 @@ describe('The fruit basket function', function () {
                 qauntity: 2
             }
         ]
-            , await basket.fruitType('Apple'));
+            , await basket.fruitType('Apple', 'Banana'));
+        assert.deepEqual([
+                {
+                    fruit_name: 'Banana',
+                    price: '3.00',
+                    qauntity: 1
+                }
+            ]
+            , await basket.fruitType('Banana'));
+            
+        assert.deepEqual([
+                {
+                    fruit_name: 'Mango',
+                    price: '9.00',
+                    qauntity: 1
+                }
+            ]
+        , await basket.fruitType('Mango'));
 
     })
     
     it('should insert into the table', async function (){
         let basket = FruitBasket (pool);
 
+        var output = await basket.insertFruit('Orange', 1, 2)
+        var output = await basket.insertFruit('Strawberry', 1, 10)
+        var output = await basket.insertFruit('Peach', 2, 6)
 
-        assert.equal('Fruit', await basket.insertFruit('Mango', 1, 20.00));
+        assert.equal(output, await basket.insertFruit('Orange', 1, 2.00));
+        assert.equal(output, await basket.insertFruit('Strawberry', 1, 10.00));
+        assert.equal(output, await basket.insertFruit('Peach', 2, 6.00));
 
     })
 
@@ -84,5 +108,4 @@ it('should show the sum of the total of the fruit baskets for a given fruit type
 after(function () {
     pool.end();
 })
-
 
